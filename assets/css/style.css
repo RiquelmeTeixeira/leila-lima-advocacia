@@ -783,6 +783,7 @@ body::before{
 
   /* page hero (subpages) */
   .page-hero{padding:130px 0 56px;}
+  .breadcrumb{font-size:11.5px;gap:6px;margin-bottom:16px;}
   .page-hero h1{font-size:25px;}
   .page-hero .lead{font-size:14px;}
   .badge{font-size:11px;padding:6px 13px;}
@@ -862,4 +863,13 @@ body::before{
   width:44px;height:44px;border-radius:50%;
   border:1px solid var(--line-soft);
   display:flex;align-items:center;justify-content:center;
+}
+
+/* documentos necessários (subpáginas): grid de 3 colunas responsivo */
+.areas-grid-3{grid-template-columns:repeat(3,1fr);}
+@media (max-width:1000px){
+  .areas-grid-3{grid-template-columns:repeat(2,1fr);}
+}
+@media (max-width:640px){
+  .areas-grid-3{grid-template-columns:1fr;}
 }
