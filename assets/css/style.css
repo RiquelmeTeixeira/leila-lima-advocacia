@@ -261,6 +261,7 @@ body::before{
   transition:opacity 1.2s var(--ease);
 }
 .hero-video.loaded{opacity:1;}
+.hero-mobile-img{display:none;}
 .hero-overlay{
   position:absolute;inset:0;
   background:
@@ -791,7 +792,10 @@ body::before{
 
   /* hero */
   .hero-content{padding-top:82px;}
-  .hero-video{
+  .hero-video{display:none;}
+  .hero-mobile-img{
+    display:block;
+    position:absolute;inset:0;
     width:100vw;
     height:100vh;
     height:100svh;
