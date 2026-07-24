@@ -57,17 +57,20 @@
 <!-- ===================== HERO (VÍDEO) ===================== -->
 <section class="hero">
   <div class="hero-bg-fallback"></div>
-  <video class="hero-video" autoplay muted loop playsinline poster="assets/img/hero-poster.jpg">
-    <source src="assets/video/leila_lima_movimento_10s.mp4" media="(max-width:640px)" type="video/mp4">
+  <video id="hero-video" class="hero-video" autoplay muted loop playsinline poster="assets/img/hero-poster.jpg">
+    <source src="assets/video/mobilehero.mp4" media="(max-width:640px)" type="video/mp4">
     <source src="assets/video/hero.mp4" type="video/mp4">
   </video>
+  <div id="hero-video-debug" style="position:fixed;top:8px;left:8px;z-index:9999;background:#000;color:#0f0;font:11px monospace;padding:6px 10px;border-radius:6px;opacity:.9;pointer-events:none"></div>
   <script>
   (function(){
-    var v = document.currentScript.previousElementSibling;
+    var v = document.getElementById('hero-video');
+    var dbg = document.getElementById('hero-video-debug');
+    if(!v) return;
     var mq = window.matchMedia('(max-width:640px)');
     function applySource(){
       var wanted = mq.matches
-        ? 'assets/video/leila_lima_movimento_10s.mp4'
+        ? 'assets/video/mobilehero.mp4'
         : 'assets/video/hero.mp4';
       var current = v.querySelector('source');
       if(!current || current.getAttribute('src') !== wanted){
@@ -80,6 +83,7 @@
         v.load();
         if(wasPlaying) v.play().catch(function(){});
       }
+      if(dbg) dbg.textContent = 'JS ok | largura=' + window.innerWidth + ' | mobile=' + mq.matches + ' | video=' + wanted;
     }
     applySource();
     mq.addEventListener('change', applySource);
