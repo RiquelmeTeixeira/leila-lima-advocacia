@@ -61,6 +61,23 @@
     <source src="assets/video/leila_lima_movimento_10s.mp4" media="(max-width:640px)" type="video/mp4">
     <source src="assets/video/hero.mp4" type="video/mp4">
   </video>
+  <script>
+  (function(){
+    var v = document.currentScript.previousElementSibling;
+    var wanted = window.matchMedia('(max-width:640px)').matches
+      ? 'assets/video/leila_lima_movimento_10s.mp4'
+      : 'assets/video/hero.mp4';
+    var current = v.querySelector('source');
+    if(!current || current.getAttribute('src') !== wanted){
+      v.querySelectorAll('source').forEach(function(s){ s.remove(); });
+      var source = document.createElement('source');
+      source.type = 'video/mp4';
+      source.src = wanted;
+      v.appendChild(source);
+      v.load();
+    }
+  })();
+  </script>
   <div class="hero-overlay"></div>
 
   <div class="container hero-content">

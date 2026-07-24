@@ -795,7 +795,7 @@ body::before{
     width:100vw;
     height:100vh;
     height:100svh;
-    object-fit:cover;
+    object-fit:contain;
     object-position:center;
   }
   .eyebrow{font-size:10.5px;padding:6px 13px;gap:7px;letter-spacing:1.6px;}
