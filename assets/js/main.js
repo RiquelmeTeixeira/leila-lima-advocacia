@@ -67,6 +67,11 @@ document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('.faq-item').forEach(item => {
     const question = item.querySelector('.faq-question');
     const answer = item.querySelector('.faq-answer');
+    // recalcula a altura real da resposta já ativa no carregamento, já que a
+    // altura fixa inline no HTML pode não bastar em telas estreitas (mais quebras de linha)
+    if (item.classList.contains('active')) {
+      answer.style.maxHeight = answer.scrollHeight + 'px';
+    }
     question.addEventListener('click', () => {
       const isActive = item.classList.contains('active');
       item.closest('.faq-list').querySelectorAll('.faq-item').forEach(other => {
@@ -78,6 +83,10 @@ document.addEventListener('DOMContentLoaded', () => {
         answer.style.maxHeight = answer.scrollHeight + 'px';
       }
     });
+  });
+  window.addEventListener('resize', () => {
+    const activeAnswer = document.querySelector('.faq-item.active .faq-answer');
+    if (activeAnswer) activeAnswer.style.maxHeight = activeAnswer.scrollHeight + 'px';
   });
 
   /* ---------- Contador animado das estatísticas do hero ---------- */
