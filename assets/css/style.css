@@ -805,6 +805,7 @@ body::before{
   .eyebrow{font-size:10.5px;padding:6px 13px;gap:7px;letter-spacing:1.6px;}
   .hero h1{font-size:26px;}
   .hero .lead{font-size:14px;margin-bottom:24px;}
+  .hero-cta{margin-top:64px;}
   .btn{padding:13px 22px;font-size:13px;}
   .hero-portrait img{max-width:170px;}
   .hero-stats{gap:0;}
