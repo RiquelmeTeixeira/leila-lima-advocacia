@@ -64,18 +64,25 @@
   <script>
   (function(){
     var v = document.currentScript.previousElementSibling;
-    var wanted = window.matchMedia('(max-width:640px)').matches
-      ? 'assets/video/leila_lima_movimento_10s.mp4'
-      : 'assets/video/hero.mp4';
-    var current = v.querySelector('source');
-    if(!current || current.getAttribute('src') !== wanted){
-      v.querySelectorAll('source').forEach(function(s){ s.remove(); });
-      var source = document.createElement('source');
-      source.type = 'video/mp4';
-      source.src = wanted;
-      v.appendChild(source);
-      v.load();
+    var mq = window.matchMedia('(max-width:640px)');
+    function applySource(){
+      var wanted = mq.matches
+        ? 'assets/video/leila_lima_movimento_10s.mp4'
+        : 'assets/video/hero.mp4';
+      var current = v.querySelector('source');
+      if(!current || current.getAttribute('src') !== wanted){
+        var wasPlaying = !v.paused;
+        v.querySelectorAll('source').forEach(function(s){ s.remove(); });
+        var source = document.createElement('source');
+        source.type = 'video/mp4';
+        source.src = wanted;
+        v.appendChild(source);
+        v.load();
+        if(wasPlaying) v.play().catch(function(){});
+      }
     }
+    applySource();
+    mq.addEventListener('change', applySource);
   })();
   </script>
   <div class="hero-overlay"></div>
